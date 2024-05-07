@@ -265,28 +265,97 @@ class BinaryTree{
     }
 
 };
-int main()
-{
-    BinaryTree tree;
-    cout<<"\n\nRecursive Traversals \n";
-    tree.RecursivePreorder(tree.root);
-    cout<<endl;
-    tree.RecursiveInorder(tree.root);
-    cout<<endl;
-    tree.RecursivePostorder(tree.root);
-    cout<<"\n\nIterative Traversals \n";
-    tree.IterativePreorder();
-    tree.IterativeInorder();
-    tree.IterativePostorder();
-    cout<<"\n\nLevel Order Traversal \n";
-    tree.LevelOrderTraversal();
-    cout<<"\n\nHeight : ";
-    cout<<tree.height(tree.root)<<endl;
-    cout<<"\n\nLeaf Nodes : ";
-    cout<<tree.countLeafNodes(tree.root)<<endl;
-    cout<<"\n\nInternal Nodes : ";
-    cout<<tree.countInternalNodes(tree.root)<<endl;
+class Menu {
+public:
+    void displayMenu() {
+        cout << "\n\n\nBinary Tree Operations Menu" << endl;
+        cout << "1. Perform Recursive Preorder Traversal" << endl;
+        cout << "2. Perform Recursive Inorder Traversal" << endl;
+        cout << "3. Perform Recursive Postorder Traversal" << endl;
+        cout << "4. Perform Iterative Preorder Traversal" << endl;
+        cout << "5. Perform Iterative Inorder Traversal" << endl;
+        cout << "6. Perform Iterative Postorder Traversal" << endl;
+        cout << "7. Perform Level Order Traversal" << endl;
+        cout << "8. Display Height of the Tree" << endl;
+        cout << "9. Display Number of Leaf Nodes" << endl;
+        cout << "10. Display Number of Internal Nodes" << endl;
+        cout << "11. Swap Left and Right Children of Every Node" << endl;
+        cout << "12. Exit" << endl;
+    }
 
-    tree.swapTree(tree.root);
-    tree.IterativeInorder();
+    void performOperation(BinaryTree& tree, int choice) {
+        switch(choice) {
+            case 1:
+                cout << "\nRecursive Preorder Traversal: ";
+                tree.RecursivePreorder(tree.root);
+                cout << endl;
+                break;
+            case 2:
+                cout << "\nRecursive Inorder Traversal: ";
+                tree.RecursiveInorder(tree.root);
+                cout << endl;
+                break;
+            case 3:
+                cout << "\nRecursive Postorder Traversal: ";
+                tree.RecursivePostorder(tree.root);
+                cout << endl;
+                break;
+            case 4:
+                cout << "\nIterative Preorder Traversal: ";
+                tree.IterativePreorder();
+                cout << endl;
+                break;
+            case 5:
+                cout << "\nIterative Inorder Traversal: ";
+                tree.IterativeInorder();
+                cout << endl;
+                break;
+            case 6:
+                cout << "\nIterative Postorder Traversal: ";
+                tree.IterativePostorder();
+                cout << endl;
+                break;
+            case 7:
+                cout << "\nLevel Order Traversal: ";
+                tree.LevelOrderTraversal();
+                cout << endl;
+                break;
+            case 8:
+                cout << "\nHeight of the Tree: " << tree.height(tree.root) << endl;
+                break;
+            case 9:
+                cout << "\nNumber of Leaf Nodes: " << tree.countLeafNodes(tree.root) << endl;
+                break;
+            case 10:
+                cout << "\nNumber of Internal Nodes: " << tree.countInternalNodes(tree.root) << endl;
+                break;
+            case 11:
+                tree.swapTree(tree.root);
+                cout << "\nLeft and Right Children of Every Node Swapped." << endl;
+                break;
+            case 12:
+                cout << "\nExiting..." << endl;
+                exit(0);
+            default:
+                cout << "Invalid choice! Please enter a valid option." << endl;
+        }
+    }
+
+    void run(BinaryTree& tree) {
+        int choice;
+        do {
+            displayMenu();
+            cout << "Enter your choice: ";
+            cin >> choice;
+            performOperation(tree, choice);
+            cout << endl;
+        } while(choice != 12);
+    }
+};
+
+int main() {
+    BinaryTree tree;
+    Menu menu;
+    menu.run(tree);
+    return 0;
 }
