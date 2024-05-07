@@ -205,8 +205,70 @@ class BinarySearchTree{
                     nodeQueue.push(curr->right);
             }
         }
-
     }
+
+    Node* searchInTree(Node* node, int data, int &attempts) {
+        if (!node || node->data == data) {
+            return node;
+        }
+
+        attempts++;
+
+        if (data < node->data) {
+            return searchInTree(node->left, data, attempts);
+        }
+        else {
+            return searchInTree(node->right, data, attempts);
+        }
+    }
+
+    Node* deleteNode(Node* root, int key)
+    {
+        if(!root)
+            return nullptr;
+
+        if(key < root->data)
+            root->left = deleteNode(root->left, key);
+
+        if(key > root->data)
+            root ->right = deleteNode(root->right, key);
+
+        else
+        {
+            if(!root->left)
+            {
+                Node* temp = root->right;
+                delete root;
+                return temp;
+            }
+
+            else if(!root->right)
+            {
+                Node* temp = root->left;
+                delete root;
+                return temp;
+            }
+
+            Node* temp = leftmost(root->right);
+            root->data = temp->data;
+            root->right = deleteNode(root->right, temp->data);
+        }
+
+        return root;
+        
+    }
+
+    Node* leftmost(Node* root)
+    {
+        Node* curr = root;
+
+        while(curr->left)
+        {
+            curr = curr->left;
+        }
+        return curr;
+    }
+    
 };
 
 int main()
@@ -227,4 +289,18 @@ int main()
     cout<<endl;
     cout<<endl;
     tree.LevelOrderTraversal();
+    int attempts = 0;
+    Node* res = tree.searchInTree(tree.root, 100, attempts);
+    if(res)
+        cout<<"Ele found searches required : "<<attempts<<endl;
+
+    else
+        cout<<"ele not found"<<endl;
+
+    tree.root = tree.deleteNode(tree.root,100);
+    tree.IterativeInorder();
+
+
 }
+
+
