@@ -209,6 +209,61 @@ class BinaryTree{
             
         }
     }
+
+    //Height 
+
+    int height(Node* root)
+    {
+        if (!root)
+            return 0;
+
+        int l_height = height(root->left);
+        int r_height = height(root->right);
+
+        return 1 + max(l_height, r_height);
+    }
+
+    //Leaf Nodes 
+    int countLeafNodes(Node* root)
+    {
+        if(!root)
+            return 0;
+
+        int num = 0;
+
+        if(root->left == nullptr  && root->right == nullptr)
+        {
+            num = 1;
+        }
+
+        return num+countLeafNodes(root->left)+countLeafNodes(root->right);;
+    }
+
+    int countInternalNodes(Node* root)
+    {
+        if(!root)
+            return 0;
+
+        int num = 0;
+
+        if(root->left != nullptr  || root->right != nullptr)
+        {
+            num = 1;
+        }
+
+        return num+countInternalNodes(root->left)+countInternalNodes(root->right);;
+    }
+
+    void swapTree(Node* root)
+    {
+        if(!root)
+            return;
+
+        Node* temp = root->left;
+        root->left = root->right;
+        root->right = temp;
+    }
+
 };
 int main()
 {
@@ -225,4 +280,13 @@ int main()
     tree.IterativePostorder();
     cout<<"\n\nLevel Order Traversal \n";
     tree.LevelOrderTraversal();
+    cout<<"\n\nHeight : ";
+    cout<<tree.height(tree.root)<<endl;
+    cout<<"\n\nLeaf Nodes : ";
+    cout<<tree.countLeafNodes(tree.root)<<endl;
+    cout<<"\n\nInternal Nodes : ";
+    cout<<tree.countInternalNodes(tree.root)<<endl;
+
+    tree.swapTree(tree.root);
+    tree.IterativeInorder();
 }
