@@ -8,7 +8,9 @@
 <li>
 <a href="#assn2"> Binary Search Tree </a>
 </li>
-
+<li>
+<a href="#assn3"> Threaded Binary Search Tree </a>
+</li>
 <hr>
 
 ## Problem Statements
@@ -30,4 +32,25 @@ Construct an expression tree from the given prefix expression (e.g. +--a*bc/def)
 <h3 id="assn2">Assignment 2 - Binary Search Tree</h3>
 <pre>
 Construct binary search tree. Provide facility for adding new entries, deleting any element. Provide facility to display whole data sorted in ascending order using non- recursive traversal. Search an element present in a tree and display number of comparisons required to search.
+</pre>
+
+<h3 id="assn3">Assignment 3 - Threaded Binary Search Tree</h3>
+<pre>
+Construct In ordered Threaded binary Search Tree. Perform its inorder traversal. Display Smallest and largest value in it. Display lbit and rbit of each node.
+
+Create an inordered threaded binary search tree for integer. Perform inorder traversal,
+and deletion of a node.
+Note: Display lbit, rbit for every node
+
+Create an inordered threaded binary search tree for integer value. Perform preorder traversals and deletion of a node.
+Note: Display lbit, rbit for every node
+</pre>
+
+<h3 id="assn4">Assignment 4 - Open Hashing</h3>
+<pre>
+Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client‘s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers (Note: Use linear probing with replacement and without replacement). Perform following operations
+1) Insert
+2) Display
+3) Search (number of comparisons required to search)
+Use Hash function as H(x) = (3*x + 5)%10
 </pre>
