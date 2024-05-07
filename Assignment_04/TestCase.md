@@ -19,6 +19,7 @@ Index   Telephone Num   Client Name
 
 ## Without Replacement
 <pre>
+    //copy this to and paste in main function
     TelephoneBook telBook(10, false);
 
     telBook.insert(12345, "amey");
@@ -45,6 +46,7 @@ Index   Telephone Num   Client Name
 <hr>
 ## With Replacement
 <pre>
+    //copy this to and paste in main function
     TelephoneBook telBook(10, true);
 
     telBook.insert(12345, "amey");
