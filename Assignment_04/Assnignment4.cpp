@@ -131,11 +131,4 @@ class TelephoneBook{
 int main()
 {
    //Use from TestCase.md
-   TelephoneBook telBook(10, true);
-
-    telBook.insert(12345, "amey");
-    telBook.insert(1235, "vardhan");
-    telBook.insert(1232, "tirthraj");
-
-    telBook.printTable();
 }
