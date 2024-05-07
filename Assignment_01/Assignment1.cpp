@@ -4,50 +4,54 @@
 // • Display and count leaf nodes
 // • Display and count internal nodes
 #include<iostream>
+#include<stack>
+#include<queue>
 using namespace std;
 
-class Node
-{
-    private:
+class Node{
     int data;
     Node* left;
     Node* right;
 
     public:
-    Node(int val=0) : left(nullptr), right(nullptr), data(val) {}
-    
+    Node(int val=0) : data(val), left(nullptr), right(nullptr) {}
     friend class BinaryTree;
 };
 
-class BinaryTree
-{
+class BinaryTree{
     public:
     Node* root;
 
-    public:
-    BinaryTree() : root(nullptr) {
-        root = createTree(this->root);
+    BinaryTree()
+    {
+        root = nullptr;
+        root = createTree(root);
     }
 
     Node* createTree(Node* root)
     {
-        int d;
-        cout<<"Enter the data :  ";
-        cin>>d;
+        int data = 0;
 
-        if(d == -1)
+        cout<<"Enter data : ";
+        cin>>data;
+
+        if(data == -1)
             return nullptr;
 
-        root = new Node(d);
+        root = new Node(data);
 
-        cout<<"Enter the data for left of "<<d<<endl;
+        cout<<"Enter data for left of "<<data<<endl;
         root->left = createTree(root->left);
-        cout<<"Enter the data for right of "<<d<<endl;
+        cout<<"Enter data for right of "<<data<<endl;
         root->right = createTree(root->right);
 
         return root;
     }
 
+    //Traversals
+
+    //1. Recursive Travesals
+    
     void RecursivePreorder(Node* root)
     {
         if(!root)
@@ -77,13 +81,148 @@ class BinaryTree
         RecursivePostorder(root->right);
         cout<<root->data<<" ";
     }
-   
-};
 
+    //2. Iterative Traversals
+
+    void IterativePreorder()
+    {
+        if (root == nullptr)
+        return;
+
+        Node* treePtr = this->root;
+        stack<Node*> nodeStack;
+
+        nodeStack.push(treePtr);
+
+        while(!nodeStack.empty())
+        {
+            treePtr = nodeStack.top();
+            nodeStack.pop();
+
+            cout<<treePtr->data<<" ";
+            
+            if(treePtr->right)
+            {
+                nodeStack.push(treePtr->right);
+            }
+            if(treePtr->left)
+            {
+                nodeStack.push(treePtr->left);
+            }
+        }
+    
+        cout<<endl;
+    }
+
+    void IterativeInorder()
+    {
+        if (root == nullptr)
+        return;
+
+        Node* curr = root;
+        stack<Node*> nodeStack;
+
+        while(!nodeStack.empty() || curr!=nullptr)
+        {
+            
+            while (curr!=nullptr)
+            {
+                nodeStack.push(curr);
+                curr = curr->left;
+            }
+
+            curr = nodeStack.top();
+            cout<<curr->data<<" ";
+            nodeStack.pop();
+
+            curr = curr->right;
+        }
+        cout<<endl;
+    }
+
+    void IterativePostorder()
+    {
+        if (root == nullptr)
+        return;
+
+        Node* curr = root;
+        stack<Node*> nodeStack_1;
+        stack<Node*> nodeStack_2;
+        nodeStack_1.push(curr);
+
+        while (!nodeStack_1.empty())
+        {
+           curr = nodeStack_1.top();
+           nodeStack_1.pop();
+           nodeStack_2.push(curr);
+
+           if(curr->left)
+           {
+            nodeStack_1.push(curr->left);
+           }
+
+           if(curr->right)
+           {
+            nodeStack_1.push(curr->right);
+           }
+        
+        }
+
+        while (!nodeStack_2.empty())
+        {
+            curr = nodeStack_2.top();
+            nodeStack_2.pop();
+            cout<<curr->data<<" ";
+        }
+        
+        cout<<endl;
+
+    }
+
+    void LevelOrderTraversal()
+    {
+        Node* curr = root;
+        queue<Node*> nodeQueue;
+
+        nodeQueue.push(root);
+        nodeQueue.push(nullptr);
+
+        while (!nodeQueue.empty())
+        {
+            curr = nodeQueue.front();
+            nodeQueue.pop();
+
+            if(!curr)
+            {
+                cout<<endl;
+
+                if(!nodeQueue.empty())
+                nodeQueue.push(nullptr);
+            }
+            else{
+                cout<<curr->data<<" ";
+                if(curr->left)
+                    nodeQueue.push(curr->left);
+                if(curr->right)
+                    nodeQueue.push(curr->right);
+            }
+            
+        }
+    }
+};
 int main()
 {
     BinaryTree tree;
+    cout<<"\n\nRecursive Traversals \n";
     tree.RecursivePreorder(tree.root);
-    tree.RecursivePostorder(tree.root);
+    cout<<endl;
     tree.RecursiveInorder(tree.root);
+    cout<<endl;
+    tree.RecursivePostorder(tree.root);
+    cout<<"\n\nIterative Traversals \n";
+    tree.IterativePreorder();
+    tree.IterativeInorder();
+    tree.IterativePostorder();
+    cout<<"\n\nLevel Order Traversal \n";
+    tree.LevelOrderTraversal();
 }
