@@ -11,6 +11,12 @@
 <li>
 <a href="#assn3"> Threaded Binary Search Tree </a>
 </li>
+<li>
+<a href="#assn4"> Telephone Book Hashing </a>
+</li>
+<li>
+<a href="#assn5"> Open Hashing</a>
+</li>
 <hr>
 
 ## Problem Statements
@@ -46,11 +52,21 @@ Create an inordered threaded binary search tree for integer value. Perform preor
 Note: Display lbit, rbit for every node
 </pre>
 
-<h3 id="assn4">Assignment 4 - Open Hashing</h3>
+<h3 id="assn4">Assignment 4 - Telephone Book Hashing</h3>
 <pre>
 Consider telephone book database of N clients. Make use of a hash table implementation to quickly look up client‘s telephone number. Make use of two collision handling techniques and compare them using number of comparisons required to find a set of telephone numbers (Note: Use linear probing with replacement and without replacement). Perform following operations
 1) Insert
 2) Display
 3) Search (number of comparisons required to search)
 Use Hash function as H(x) = (3*x + 5)%10
+</pre>
+
+<h3 id="assn5">Assignment 5 - Open Hashing</h3>
+<pre>
+Implement all the functions of a dictionary (ADT) using open hashing technique: separate 
+chaining using linked list Data: Set of (key, value) pairs, Keys are mapped to values, Keys 
+must be comparable, and Keys must be unique. Standard Operations: Insert (key, value), 
+Find(key), Delete(key). 
+
+Use hash function as H(x) = (3x+5) % 10
 </pre>
