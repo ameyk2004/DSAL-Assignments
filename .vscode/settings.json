@@ -1,8 +1,10 @@
 {
     "files.associations": {
+        "__split_buffer": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp",
         "iostream": "cpp",
-        "ostream": "cpp",
-        "stack": "cpp",
-        "queue": "cpp"
+        "ostream": "cpp"
     }
 }

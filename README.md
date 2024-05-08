@@ -17,6 +17,9 @@
 <li>
 <a href="#assn5"> Open Hashing</a>
 </li>
+<li>
+<a href="#assn6"> Graph DFS and BFS</a>
+</li>
 <hr>
 
 ## Problem Statements
@@ -69,4 +72,16 @@ must be comparable, and Keys must be unique. Standard Operations: Insert (key, v
 Find(key), Delete(key). 
 
 Use hash function as H(x) = (3x+5) % 10
+</pre>
+
+<h3 id="assn6">Assignment 6 - Graph DFS and BFS</h3>
+<pre>
+Write menu driven C++ program to
+1) Represent a given graph using adjacency list/Adjacency Matrix. 
+   Use the map of the area around the college as the graph
+2) Display Graph
+3) Perform DFS traversal using recursive/non-recursive algorithm.
+4) Perform BFS traversal.
+
+Note: Write your own Queue class
 </pre>
