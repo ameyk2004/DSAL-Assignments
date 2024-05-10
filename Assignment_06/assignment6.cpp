@@ -142,10 +142,43 @@ class Graph{
                 }
             }
             cout<<endl;
-
-
-
         }
+
+
+        void dfs(int start = 0) {
+    if (start < 0 || start >= nodes) {
+        cout << "Invalid start point" << endl;
+        return;
+    }
+
+    bool* visited = new bool[nodes];
+    for (int i = 0; i < nodes; i++) {
+        visited[i] = false;
+    }
+
+    stack<int> s;
+    s.push(start);
+
+    while (!s.empty()) {
+        int vertex = s.top();
+        s.pop();
+
+        if (!visited[vertex]) {
+            cout << vertex << " ";
+            visited[vertex] = true;
+        }
+
+        Node* curr = adj[vertex];
+        while (curr) {
+            if (!visited[curr->vertex]) {
+                s.push(curr->vertex);
+            }
+            curr = curr->next;
+        }
+    }
+
+    delete[] visited; // Free the dynamically allocated memory
+}
 
 };
 
@@ -162,6 +195,7 @@ int main()
     G.addEdge(1,2);
     G.displayGraph();
     G.bfs();
+    G.dfs();
 
 
 }
