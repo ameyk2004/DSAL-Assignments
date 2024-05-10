@@ -18,7 +18,25 @@
 <a href="#assn5"> Open Hashing</a>
 </li>
 <li>
-<a href="#assn6"> Graph DFS and BFS</a>
+<a href="#assn6"> Graph - DFS and BFS</a>
+</li>
+<li>
+<a href="#assn7"> Graph - Prims and Kruskal</a>
+</li>
+<li>
+<a href="#assn8"> Optimal Binary Search Tree (OBST)</a>
+</li>
+<li>
+<a href="#assn9"> AVL Tree Implimentation</a>
+</li>
+<li>
+<a href="#assn10"> Heap Sort</a>
+</li>
+<li>
+<a href="#assn11"> Sequential File</a>
+</li>
+<li>
+<a href="#assn12"> Direct Acess File</a>
 </li>
 <hr>
 
@@ -84,4 +102,46 @@ Write menu driven C++ program to
 4) Perform BFS traversal.
 
 Note: Write your own Queue class
+</pre>
+
+<h3 id="assn7">Assignment 7 - Graph Prims and Kruskal</h3>
+<pre>
+You have a business with several offices; 
+you want to lease phone lines to connect them up with each other; 
+and the phone company charges different amounts of money to connect different pairs of cities. 
+You want a set of lines that connects all your offices with a minimum total cost. 
+Solve the problem by using weighted graph and applying minimum spanning tree algorithm.
+</pre>
+
+<h3 id="assn8">Assignment 8 - Optimal Binary Search Tree (OBST)</h3>
+<pre>
+Given sequence k = k1, k2, kn, of n sorted keys, with a successful and unsuccessful
+search probability pi and qi for each key ki. Build the Binary search tree that has the least search cost given the access probability for each key.
+</pre>
+
+<h3 id="assn9">Assignment 9 - AVL Tree Implimentation</h3>
+<pre>
+A Dictionary stores keywords and its meanings. Provide facility for adding new keywords. Provide facility to display whole data sorted in ascending/ Descending order. Also find how many maximum comparisons may require for finding any keyword. Use Height balanced (AVL) tree.
+</pre>
+
+<h3 id="assn10">Assignment 10 - Heap Sort</h3>
+<pre>
+Implement the Heap sort algorithm for demonstrating heap data structure with modularity
+of programming language (consider integer data)
+
+Read the marks obtained by students of second year in an online examination of particular subject. Find out minimum marks obtained in that subject. Use heap data structure. Analyze the algorithm.
+</pre>
+
+<h3 id="assn11">Assignment 11 - Sequential Acess File</h3>
+<pre>
+ Department maintains a student information. The file contains roll number, name, division and address.
+ Allow user to add, delete information of student. Display information of particular employee. 
+ If record of student does not exist an appropriate message is displayed. 
+ If it is, then the system displays the student details. Use sequential file to maintain the data.
+</pre>
+
+<h3 id="assn12">Assignment 12 - Direct Acess File</h3>
+<pre>
+Implementation of a direct access file -Insertion and deletion of a record from a direct
+access file.
 </pre>
