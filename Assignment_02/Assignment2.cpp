@@ -231,7 +231,7 @@ class BinarySearchTree{
             root->left = deleteNode(root->left, key);
 
         if(key > root->data)
-            root ->right = deleteNode(root->right, key);
+            root->right = deleteNode(root->right, key);
 
         else
         {
