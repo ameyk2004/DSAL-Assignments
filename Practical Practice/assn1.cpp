@@ -171,14 +171,18 @@ class BinaryTree{
         return 1+max(l_height, r_height);
     }
 
-    void swapTree(Node* root)
+    Node* swapTree(Node* root)
     {
         if(!root)
-            return;
+            return nullptr;
 
         Node* temp = root->left;
         root->left = root->right;
         root->right = temp;
+
+        root->left = swapTree(root->left);
+        root->right = swapTree(root->right);
+        return root;
     }
     int countLeafNodes(Node* root)
     {
