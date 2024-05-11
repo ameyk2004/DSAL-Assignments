@@ -5,6 +5,8 @@
         "new": "cpp",
         "__bit_reference": "cpp",
         "bitset": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "ostream": "cpp",
+        "ios": "cpp"
     }
 }
