@@ -1,28 +1,5 @@
 #include <iostream>
 using namespace std;
-
-/*
-
-Name: Tirthraj Mahajan
-Class: SE2 
-RollNo: 21242
-
-Creating the binary tree following the following diagram
-https://examradar.com/wp-content/uploads/2016/10/Threaded-Binary-Tree-3.png
-
-Steps of creating a Threaded Binary Search Tree
-
-1. Create a node class with the following attributes, data, left ptr, right ptr, lbit and rbit
-
-2. When you create a new node, make that node a leaf node by default, cause you always enter leaf nodes into the tree
-
-3. In the TBST class, make a header node what will not be printed, It's left pointer points to the first node inserted
-
-
-*/
-
-
-
 class Node{
 private:
     int data;
@@ -342,7 +319,7 @@ public:
         {
             noChildCase(ParentinorderSuccesor, inorderSuccesor);
         }
-        
+
         if(!inorderSuccesor->lthread||!inorderSuccesor->rthread)
         {
             oneChildCase(ParentinorderSuccesor, inorderSuccesor);
@@ -399,16 +376,16 @@ int main(){
     
     // deletion
 
-    /*
-        test cases for case A:
-        Test Case 1:
-        tree.deleteNode(3);
+    // /*
+    //     test cases for case A:
+    //     Test Case 1:
+    //     tree.deleteNode(3);
 
-        Test Case 2:
-        tree.deleteNode(20);
+    //     Test Case 2:
+    //     tree.deleteNode(20);
 
         
-    */
+    // */
 
     /*
         Test Cases for Case B
