@@ -1,22 +1,18 @@
-// Given sequence k = k1, k2, kn, of n sorted keys, with a successful and unsuccessful
-// search probability pi and qi for each key ki. Build the Binary search tree that has the least search cost given the access probability
-// for each key.
-
 #include<iostream>
 #include<limits.h>
+
 using namespace std;
 
 class Node{
-    private:
     int k;
     int p;
     int q;
-
-    public:
+    Node* left;
+    Node* right;
+public:
     Node() {}
-    Node(int k,int p, int q) : k(k), p(p), q(q){}
+    Node(int k, int p, int q) : k(k), p(p), q(q), left(nullptr), right(nullptr){} //Node created
     friend class OBST;
-    friend class MatrixElement;
 };
 
 class MatrixElement{
@@ -26,23 +22,38 @@ class MatrixElement{
 
     public:
     MatrixElement() {}
-    MatrixElement(int w,int c, int r) : weight(w), cost(c), root(r) {}
+    MatrixElement(int w, int c, int r) : weight(w), cost(c), root(r) {}
 
     friend class OBST;
 };
 
 class OBST{
-    Node* root;
-    MatrixElement **matrix;
-    Node* nodeList;
+    MatrixElement** matrix;
     int nodes;
+    
+    Node* nodeList;
 
-public:
+    public:
+    Node* root;
+    OBST(int n=0) : nodes(n+1)
+    {
+        root = nullptr;
+        matrix = new MatrixElement*[nodes];
+        nodeList = new Node[nodes];
+
+        for(int i=0;i<nodes;i++)
+        {
+            matrix[i] = new MatrixElement[nodes];
+        }
+    }
+
     void instantiateNodeList()
     {
-        cout<<"Enter k p q respectively "<<endl;
-        int k=-1,p=-1,q=-1;
-        for(int i=0;i<nodes;i++)
+        cout<<"Ener values of k, p and q"<<endl;
+        int k=-1;
+        int p=-1;
+        int q=-1;
+        for(int i = 0;i<nodes;i++)
         {
             if(i!=0)
             {
@@ -54,9 +65,7 @@ public:
             cout<<"Enter q"<<i<<" : ";
             cin>>q;
 
-            Node temp =  Node(k,p,q);
-            nodeList[i] = temp;
-        
+            nodeList[i] = Node(k,p,q);
         }
     }
 
@@ -67,52 +76,33 @@ public:
             for(int j=0;j<nodes;j++)
             {
                 if(i==j)
-                matrix[i][j] = MatrixElement(nodeList[i].q,0,-1);
+                {
+                    // cout<<i<<" "<<j<<endl;
+                    matrix[i][j] = MatrixElement(nodeList[i].q,0,-1);
+                }
                 else
-                matrix[i][j] = MatrixElement(-1,-1,-1);
+                {
+                  matrix[i][j] = MatrixElement(-1,-1,-1);
+                }
+                
             }
         }
-    }
 
-    void printNodelist()
-    {
-        cout<<"\nNode List"<<endl;
-        for(int i=0;i<nodes;i++)
-        {
-            Node temp = nodeList[i];
-            cout<<temp.k<<" "<<temp.p<<" "<<temp.q<<" "<<endl;
-        }
-        cout<<endl;
-    }
-
-    void printMatrix()
-    {
-        cout<<"\nMatrix"<<endl;
-        for(int i=0;i<nodes;i++)
-        {
-            for(int j=0;j<nodes;j++)
-            {
-                cout<<matrix[i][j].cost<<" ";
-            }
-            cout<<endl;
-        }
     }
 
     void optimise()
     {
-        for(int diff=0;diff<nodes;diff++)
+        for(int diff = 0; diff<nodes;diff++)
         {
-            for(int i=0;i<nodes;i++)
+            for(int i = 0; i<nodes;i++)
             {
-                for(int j=0;j<nodes;j++)
-                {
-                    if(diff == j-i)
+               for(int j = 0; j<nodes;j++)
+               {
+                    if(diff==j-i)
                     {
-                        cout<<"\nCost "<<i<<" "<<j<<": "<<C(i,j)<<endl;
-                        cout<<"Weight "<<i<<" "<<j<<": "<<W(i,j)<<endl;
+                        C(i,j);
                     }
-                    
-                }
+               }
             }
         }
     }
@@ -120,7 +110,8 @@ public:
     int C(int i, int j)
     {
         if(i>=j) return 0;
-        if(matrix[i][j].cost !=-1) return matrix[i][j].cost;
+        if(matrix[i][j].cost != -1) return matrix[i][j].cost;
+
         int minCost = INT_MAX;
         int minRoot = -1;
 
@@ -135,63 +126,83 @@ public:
             }
         }
 
-
-        matrix[i][j].cost = minCost;
         matrix[i][j].root = minRoot;
+        matrix[i][j].cost = minCost;
+
+
 
         return minCost;
+
     }
 
-    int W(int i,int j)
+    int W(int i, int j)
     {
-        if(i==j) return matrix[i][j].weight;
         if(i>j) return 0;
-        if(matrix[i][j].weight != -1) return matrix[i][j].weight;
+        if(i==j) return matrix[i][j].weight;
+
+        if(matrix[i][j].weight!=-1) return matrix[i][j].weight;
 
         int weight = W(i,j-1) + nodeList[j].p + nodeList[j].q;
+
         matrix[i][j].weight = weight;
+        // cout<<"Weight for "<<i<<" "<<j<<" = "<<weight<<endl;
         return weight;
     }
 
-    OBST(int n=4)
+    void dispNodeList()
     {
-        nodes = n+1;
-        nodeList = new Node[nodes];
-        matrix = new MatrixElement*[nodes];
         for(int i=0;i<nodes;i++)
         {
-            matrix[i] = new MatrixElement[nodes];
+            cout<<nodeList[i].k<<" "<<nodeList[i].p<<" "<<nodeList[i].q<<endl;
         }
-        instantiateNodeList();
-        instantiateMatrix();
-        printMatrix();
-        printNodelist();
-        optimise();
     }
+    
+    Node* createTree(int i, int j)
+    {
+        cout<<"i = "<<i<<" j = "<<j<<endl;
+        if(i>=j) return nullptr;
+        int k = matrix[i][j].root;
+        // cout<<"i = "<<i<<" j = "<<j<<" "<<k<<" "<<endl;
+        Node* node = &nodeList[k];
+        node->left = createTree(i,k-1);
+        node->right = createTree(i,j);
+
+        return node;
+    }
+
+    void inorder(Node* node){
+        if(!node) return;
+        inorder(node->left);
+        cout<<node->k<<" ";
+        inorder(node->right);
+    }
+
+    void printMatrix()
+    {
+        cout<<"\n\n";
+        for(int i=0;i<nodes;i++)
+        {
+            for(int j=0;j<nodes;j++)
+            {
+                cout<<matrix[i][j].cost<<" ";
+            }
+
+            cout<<endl;
+        }
+    }
+
 };
+
 int main()
 {
-    OBST tree;
-    
+    OBST tree(4);
+    tree.instantiateNodeList();
+    tree.instantiateMatrix();
+    tree.printMatrix();
+    // tree.dispNodeList();
+    tree.optimise();
 
-    /*
-    Reference Question:
-    https://youtu.be/wAy6nDMPYAE?si=Pf7gucJCdujIrt3P&t=3141
-
-        0   1   2   3   4
-    k   x   10  20  30  40
-    p   x   3   3   1   1
-    q   2   3   1   1   1
-
-    Total Cost = 36
-    Summation of Probabilities = 16
-    Final Cost => 36/16 = 2
-
-
-    direct i/p : 2 10 3 3 20 3 1 30 1 1 40 1 1
-*/
-// c(0,2) = c(0,0) + c(1,2) + w(0,2)
-                    
-tree.printMatrix();
-
+    tree.printMatrix();
+    tree. root = tree.createTree(0,4);
+    tree.inorder(tree.root);
 }

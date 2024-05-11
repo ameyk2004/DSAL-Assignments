@@ -179,5 +179,6 @@ int main()
     tree.printMatrix();
     // tree.dispNodeList();
     tree.optimise();
+
     tree.printMatrix();
 }
