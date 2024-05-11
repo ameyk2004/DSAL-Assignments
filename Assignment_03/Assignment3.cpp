@@ -152,6 +152,7 @@ public:
                 if(root == header) break;
 
                 root = root->right;
+                
             }
         }
     }

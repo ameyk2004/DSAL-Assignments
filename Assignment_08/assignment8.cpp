@@ -181,4 +181,5 @@ int main()
     tree.optimise();
 
     tree.printMatrix();
+    
 }

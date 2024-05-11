@@ -152,6 +152,7 @@ int main()
     DirectAccessFile f(no_of_stud,"data");
     f.deleteStudent(21237);
     f.studData.displayTable();
+    
 
     //2 A 21237 B 21238
 }

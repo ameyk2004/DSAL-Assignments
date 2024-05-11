@@ -299,8 +299,7 @@ int main()
 
     tree.root = tree.deleteNode(tree.root,100);
     tree.IterativeInorder();
-
-
+    
 }
 
 

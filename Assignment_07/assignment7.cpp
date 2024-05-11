@@ -164,4 +164,5 @@ int main(){
     G.print(G.getAdj());
     
     G.prims(0);
+    
 }

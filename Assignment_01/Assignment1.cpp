@@ -262,6 +262,7 @@ class BinaryTree{
         Node* temp = root->left;
         root->left = root->right;
         root->right = temp;
+        
     }
 
 };
